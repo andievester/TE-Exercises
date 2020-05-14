@@ -140,6 +140,9 @@ public class Examples {
 
 		// The same literal syntax would apply to an array of Strings
 		String[] stooges = new String[] { "Larry", "Curly", "Moe" };
+		for (int i = 0; i < stooges.length; i++) {
+			System.out.println(stooges[i]);
+		}
 
 		/* Arrays are Objects, so they are "passed by reference".  In other words. when assigning
 		 * the value of one array variable to another array variable, we are assigning a reference

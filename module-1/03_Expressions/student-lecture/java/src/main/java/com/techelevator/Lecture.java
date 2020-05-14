@@ -14,14 +14,14 @@ public class Lecture {
     it so that it returns something other than a 0.5.
     */
     public double returnNotHalf() {
-        return 0.5;
+        return -3;
     }
 
     /*
     3. This method needs to return a String. Fix it to return a valid String.
     */
     public String returnName() {
-        return null;
+        return "any string";
     }
 
     /*
@@ -35,8 +35,8 @@ public class Lecture {
     5. This method should return the language that you're learning. Change
     it so that it does that.
     */
-    public boolean returnNameOfLanguage() {
-        return false;
+    public String returnNameOfLanguage() {
+        return "Java";
     }
 
     /*
@@ -45,7 +45,7 @@ public class Lecture {
     */
     public boolean returnTrueFromIf() {
         if (true) {
-            return false;
+            return true;
         }
 
         return false;
@@ -69,7 +69,7 @@ public class Lecture {
     */
     public boolean returnTrueWhenGreaterThanFive(int number) {
         if (number > 5) {
-
+        		return true;
         } else {
 
         }
@@ -108,6 +108,9 @@ public class Lecture {
     11. Write an if statement that returns "Fizz" if the parameter is 3 and returns an empty String for anything else.
     */
     public String returnFizzIfThree(int number) {
+    	if(number==3) {
+    		return "Fizz";
+    	}
         return "";
     }
 
@@ -115,7 +118,13 @@ public class Lecture {
     12. Now write the above using the Ternary operator ?:. If you're not sure what this is, you can Google it.
     */
     public String returnFizzIfThreeUsingTernary(int number) {
-        return "";
+    	String s = (5 < 10)? "true" : "false";
+    	String s2 = "";
+    	if (5 < 10)
+    		s2 = "true";
+    	else 
+    		s2 = "false";
+        return (number == 3) ? "Fizz" : "" ;
     }
 
     /*
@@ -129,7 +138,7 @@ public class Lecture {
     14. Write an if statement that checks if the parameter number is either equal to or greater than 18. Return "Adult" if it is or "Minor" if it's not.
     */
     public String returnAdultOrMinor(int number) {
-        if (true) {
+        if (number >= 18) {
             return "Adult";
         } else {
             return "Minor";
@@ -140,20 +149,16 @@ public class Lecture {
     15. Now, do it again with a different boolean opeation.
     */
     public String returnAdultOrMinorAgain(int number) {
-        if (true) {
-            return "Adult";
-        } else {
-            return "Minor";
-        }
+       return (number < 18) ? "Minor" : "Adult";
     }
 
     /*
     16. Return as above, but also return "Teen" if the number is between 13 and 17 inclusive.
     */
     public String returnAdultOrMinorOrTeen(int number) {
-        if (true) {
+        if (number >= 18) {
             return "Adult";
-        } else if (true) {
+        } else if (number >=13 && number <= 17) {
             return "Teen";
         } else {
             return "Minor";

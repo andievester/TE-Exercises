@@ -483,5 +483,4 @@ public class Exercises {
 		System.out.println(intPercentTravelled);
 
 	}
-
 }
