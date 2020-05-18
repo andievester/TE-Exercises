@@ -152,7 +152,7 @@ public class Exercises {
 		int even = 0;
 		for (int countEvens = 0; countEvens < nums.length; countEvens++) {
 			if (nums[countEvens] % 2 == 0)
-				even++;
+				++even;
 		}
 			
 		return even;
