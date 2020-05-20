@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		return Arrays.asList(stringArray);	
 	}
 
 	/*
@@ -32,7 +33,7 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		return (String[]) stringList.toArray(new String[stringList.size()]);
 	}
 
 	/*
@@ -43,7 +44,15 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> noWords = new ArrayList<String>();
+		for (int i = 0; i < stringArray.length; i++) {
+			String word = stringArray[i];
+			if (word.length() != 4) {
+				noWords.add(word);
+			}
+			
+		}
+		return noWords;
 	}
 
 	/*
@@ -55,7 +64,16 @@ public class Exercises {
 		-> ["way", "the", "all", "jingle", "bells", "jingle", "bells", "jingle"]
 	 */
 	public List<String> reverseList(List<String> stringList) {
-		return null;
+		Stack<String> stack = new Stack<String>();
+		
+		for(String s : stringList) {
+			stack.push(s);
+		}
+		List<String> newList = new ArrayList<String> ();
+		while(stack.size() > 0) {
+			newList.add(stack.pop());
+		}
+		return newList;
 	}
 
 	/*
@@ -65,7 +83,14 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> dividedByTwo = new ArrayList<Double>();
+		for (int i = 0; i < intArray.length; i++) {
+			double numToDivide = intArray[i];
+			double divided = numToDivide / 2;
+			dividedByTwo.add(divided);
+		}
+		System.out.println(dividedByTwo);
+		return dividedByTwo;
 	}
 
 	/*
@@ -75,7 +100,14 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		int largest = -2147483648;
+		 for(int i = 0; i < integerList.size(); i++) {
+	            if (integerList.get(i) > largest) {
+	            	largest = integerList.get(i);
+	           }
+	            
+		 }
+		 return largest;
 	}
 
 	/*
@@ -85,8 +117,19 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> noEvens = new ArrayList<Integer>();
+		for (int i = 0; i < integerArray.length; i++) {
+			Integer number = integerArray[i];
+			if (number % 2 != 0) {
+				noEvens.add(number);
+				System.out.println(noEvens);
+			}
+			
+		}
+		return noEvens;
 	}
+
+
 
 	/*
 	 Given a List of Integers, and an int value, return true if the int value appears two or more times in
@@ -96,7 +139,13 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
-		return false;
+		int count = 0;
+		for (int i = 0; i < integerList.size(); i++) {
+			if (intToFind == integerList.get(i)) {
+			count++;
+			}
+		} 
+		return (count >= 2);
 	}
 
 	/*
@@ -113,8 +162,26 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		List<String> fizzingBuzzing = new ArrayList<String>();
+		for (Integer number : integerArray) {
+			if (number % 3 == 0 && number % 5 == 0) {
+				fizzingBuzzing.add("FizzBuzz");
+			}
+			else if (number % 3 == 0) {
+				fizzingBuzzing.add("Fizz");	
+			} 
+			else if (number % 5 == 0) {
+				fizzingBuzzing.add("Buzz");
+			
+			}
+			else {
+				fizzingBuzzing.add(number.toString());
+			}
+		
+		}
+		return fizzingBuzzing;
 	}
+	
 
 	/*
 	 Given two lists of Integers, interleave them beginning with the first element in the first list followed
@@ -124,7 +191,23 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		List<Integer> newList = new ArrayList<Integer>();
+		int i;
+			for (i = 0; i < listOne.size() && i < listTwo.size(); i++) {
+				newList.add(listOne.get(i));
+				newList.add(listTwo.get(i));
+		}
+			
+			if (i < listOne.size()) {
+				newList.addAll(listOne.subList(i, listOne.size()));
+			
+		}
+		
+			if (i < listTwo.size()) {
+				newList.addAll(listTwo.subList(i, listTwo.size()));
+			
+		}
+			return newList;
 	}
 
 	/*
@@ -137,7 +220,39 @@ public class Exercises {
 	 boardingGate( [0, -1, 44, 31, 17, 7, 27, 16, 26, 6] ) -> [7, 6, 17, 16, 27, 26]
 	 */
 	public List<Integer> boardingGate(List<Integer> seatNumberList) {
-		return null;
+		Queue<Integer> oneThru10 = new LinkedList<Integer>();
+		Queue<Integer> elevenThru20 = new LinkedList<Integer>();
+		Queue<Integer> twentyoneThru30 = new LinkedList<Integer>();
+		
+		List<Integer> combo = new ArrayList<Integer>();
+		
+		for (Integer seatNumber : seatNumberList) {
+			if (seatNumber > 0 && seatNumber < 11) {
+				oneThru10.add(seatNumber);
+			}
+			if (seatNumber > 10 && seatNumber < 21) {
+				elevenThru20.add(seatNumber);
+			}
+			if (seatNumber > 20 && seatNumber < 31) {
+				twentyoneThru30.add(seatNumber);
+			}
+		}
+		while(oneThru10.size() > 0) {
+			Integer nextSeat = oneThru10.poll();
+			combo.add(nextSeat);
+		}	
+	
+		while(elevenThru20.size() > 0) {
+			Integer nextSeat = elevenThru20.poll();
+			combo.add(nextSeat);
+
+		}
+	
+		while(twentyoneThru30.size() > 0) {
+			Integer nextSeat = twentyoneThru30.poll();
+			combo.add(nextSeat);
+		}
+		return combo;
 	}
 
 }
