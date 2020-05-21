@@ -11,7 +11,14 @@ public class PaintCalc {
 	 * 
 	 * To do: Create a class to keep track of the walls and use it appropriately
 	 */
-	public static void main(String[] args) {	
+	public static void main(String[] args) {
+		
+		Rectangle rect = new Rectangle();
+		rect.setHeight(5);
+		rect.setWidth(10);
+		System.out.println("Height is " + rect.getHeight());
+		
+		
 		boolean done = false;
 		while(done == false) {
 			
