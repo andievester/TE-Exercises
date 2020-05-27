@@ -17,7 +17,7 @@ public class FruitTree {
 			return false;
 		}
 	}
-	public String getTypeOfFruit() {
+	public String getTypeOfFruit() {        
 		return typeOfFruit;
 	}
 	public int getPiecesOfFruitLeft() {
