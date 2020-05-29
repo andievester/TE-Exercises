@@ -4,18 +4,18 @@ public class SquareWall extends RectangleWall {
 	
 	private int sideLength;
 	
+	
 	public SquareWall(String name, String color, int sideLength) {
-		super(name, color);
+		super(name, color, sideLength, sideLength);
 		this.sideLength = sideLength;
+	}
+	public int getSideLength() {
+		return sideLength;
 	}
 	
 	@Override
 	public int getArea() {
-		return (sideLength * sideLength);
-	}
-	
-	public int getSideLength() {
-		return sideLength;
+		return super.getArea();
 	}
 
 	public String toString() {

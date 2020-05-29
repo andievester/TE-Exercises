@@ -2,8 +2,8 @@ package com.techelevator;
 
 public class RectangleWall extends Wall {
 	
-	private int length;
-	private int height;
+	protected int length;
+	protected int height;
 	
 	
 	public RectangleWall(String name, String color, int length, int height) {
