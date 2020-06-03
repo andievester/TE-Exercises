@@ -42,6 +42,7 @@ public class QuizMaker {
 		}
 	}
 
+
 	public void askQuestions(Scanner scanner) {
 		int totalQuestionsAsked = 0;
 		int totalCorrectAnswers = 0;
@@ -66,7 +67,7 @@ public class QuizMaker {
 			System.out.println();
 			System.out.println("You got " + totalCorrectAnswers + " answers correct out of a total " + totalQuestionsAsked + " questions asked.");
 	}
-	
+
 	public File getQuizFile(String filePath) throws IOException {
 		File quizFile = new File(filePath);
 		
@@ -80,5 +81,6 @@ public class QuizMaker {
 		
 		return quizFile;
 	}
+	
 
 }
