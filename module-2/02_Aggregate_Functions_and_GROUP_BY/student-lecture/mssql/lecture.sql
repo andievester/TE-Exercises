@@ -1,21 +1,36 @@
 -- ORDERING RESULTS
 
 -- Populations of all countries in descending order
+SELECT name, population
+FROM country
+ORDER BY population DESC;
 
 --Names of countries and continents in ascending order
+SELECT name, continent
+FROM country
+ORDER BY  continent, name ASC;
 
 -- LIMITING RESULTS
 -- The name and average life expectancy of the countries with the 10 highest life expectancies.
-
+SELECT name, lifeexpectancy
+FROM country
+WHERE lifeexpectancy IS NOT null
+ORDER BY lifeexpectancy DESC
+LIMIT 10
+OFFSET 10;
 -- CONCATENATING OUTPUTS
 
 -- The name & state of all cities in California, Oregon, or Washington.
 -- "city, state", sorted by state then city
+SELECT city, district
 
 -- AGGREGATE FUNCTIONS
 -- Average Life Expectancy in the World
 
 -- Total population in Ohio
+SELECT sum(population)
+FROM city
+WHERE district = 'Ohio';
 
 -- The surface area of the smallest country in the world
 
@@ -27,7 +42,11 @@
 -- Count the number of countries where each language is spoken, ordered from most countries to least
 
 -- Average life expectancy of each continent ordered from highest to lowest
-
+SELECT continent, avg(lifeexpectancy) as "Average Life Expectancy"
+FROM country
+WHERE lifeexpectancy IS NOT null
+GROUP BY continent
+ORDER BY "Average Life Expectancy" DESC;
 -- Exclude Antarctica from consideration for average life expectancy
 
 -- Sum of the population of cities in each state in the USA ordered by state name
