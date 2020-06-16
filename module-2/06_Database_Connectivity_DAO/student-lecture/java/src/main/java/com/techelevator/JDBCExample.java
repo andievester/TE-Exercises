@@ -18,6 +18,7 @@ public class JDBCExample {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/dvdstore");
 		dataSource.setUsername("postgres");
+		dataSource.setPassword(System.getenv("DB_PASSWORD"));
 		
 		Connection conn = dataSource.getConnection();
 		
