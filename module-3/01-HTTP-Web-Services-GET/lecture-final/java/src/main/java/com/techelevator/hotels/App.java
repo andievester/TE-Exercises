@@ -2,6 +2,7 @@ package com.techelevator.hotels;
 
 import java.util.Scanner;
 
+
 import org.springframework.web.client.RestTemplate;
 
 import com.techelevator.city.City;

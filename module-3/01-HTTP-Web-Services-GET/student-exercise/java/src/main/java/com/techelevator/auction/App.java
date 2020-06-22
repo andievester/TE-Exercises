@@ -2,14 +2,20 @@ package com.techelevator.auction;
 
 import java.util.Scanner;
 
+
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.techelevator.auction.Auction;
+
+
+
+
 public class App {
 
-    private static final String API_URL = "http://localhost:3000/auctions";
+    private static final String API_URL = "http://localhost:3000/";
     public static RestTemplate restTemplate = new RestTemplate();
-    private static Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         init();
@@ -24,28 +30,48 @@ public class App {
     }
 
     public static Auction[] listAllAuctions() {
-        // api code here
-        return null;
+    	return restTemplate.getForObject(API_URL + "auctions", Auction[].class);
+       
     }
 
     public static Auction listDetailsForAuction() {
-        // api code here
-        return null;
+    	Auction auctionSelect = null;
+    	try {
+    		int auctionId;
+    		auctionId = Integer.parseInt(scanner.nextLine());
+    		auctionSelect = restTemplate.getForObject(API_URL + "auctions/" + auctionId, Auction.class);
+    	} catch (NumberFormatException exception) {
+    		System.out.println("Error parsing the input for menu selection");
+    	}
+    	return auctionSelect;
     }
 
     public static Auction[] findAuctionsSearchTitle() {
-        // api code here
-        return null;
+        Auction[] arrayOfTitles = null;
+        try { 
+        	String title = scanner.nextLine();
+        	arrayOfTitles = restTemplate.getForObject(API_URL + "auctions?" + "title_like=" + title, Auction[].class);
+        } catch (HttpClientErrorException e) {
+        	System.out.println("Error");
+        }
+        
+        return arrayOfTitles;
     }
 
     public static Auction[] findAuctionsSearchPrice() {
-        // api code here
-        return null;
+        Auction[] arrayOfPrices = null;
+        try {
+        	double searchPrice = Double.parseDouble(scanner.nextLine()); 
+        	arrayOfPrices = restTemplate.getForObject(API_URL + "auctions?" + "currentBid_lte=" + searchPrice, Auction[].class);
+        } catch (NumberFormatException e) {
+        	System.out.println("Error reading in search price");
+        }
+        return arrayOfPrices;
     }
 
     private static void run() {
         int menuSelection = 999;
-
+       
         printGreeting();
 
         while (menuSelection != 5) {
@@ -56,7 +82,7 @@ public class App {
             }
             System.out.println("");
             if (menuSelection == 1) {
-                printAuctions(listAllAuctions());
+				printAuctions(listAllAuctions());
             } else if (menuSelection == 2) {
                 printAuction(listDetailsForAuction());
             } else if (menuSelection == 3) {
