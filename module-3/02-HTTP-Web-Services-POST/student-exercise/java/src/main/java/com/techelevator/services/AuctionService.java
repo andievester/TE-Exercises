@@ -1,6 +1,9 @@
 package com.techelevator.services;
 
+
 import com.techelevator.models.Auction;
+
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -68,18 +71,71 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
+  	  Auction newAuction = makeAuction(auctionString);
+  	  if (newAuction == null) {
+  		  return null;
+  	  }
+  	  
+  	  HttpEntity<Auction> entity = makeEntity(newAuction);
+  	  /*HttpHeaders headers = new HttpHeaders();
+  	  headers.setContentType(MediaType.APPLICATION_JSON);
+  	  HttpEntity<Auction> entity = new HttpEntity<Auction>(newAuction, headers);*/
+  	  try {
+  	  newAuction = restTemplate.postForObject(BASE_URL, entity, Auction.class);
+  	  }
+  	  catch (RestClientResponseException e) { 
+  		  System.out.println("Unable to create new auction item.");
+  		  System.out.println(e.getRawStatusCode()+ " " + e.getStatusText()  );
+  	  }
+  	  catch (ResourceAccessException e) {
+  		  System.out.println("Unable to create new auction item.");
+  		  System.out.println(e.getMessage());
+  	  }
+  	  
+  	  return newAuction;
     }
 
     public Auction update(String auctionString) {
-        // place code here
-        return null;
+  	  Auction newAuction = makeAuction(auctionString);
+  	  if (newAuction == null) {
+  		  return null;
+  	  }
+  	  
+  	HttpEntity<Auction> entity = makeEntity(newAuction);
+  	
+  	 /*  HttpHeaders headers = new HttpHeaders();
+  	  headers.setContentType(MediaType.APPLICATION_JSON);
+  	  HttpEntity<Auction> entity = new HttpEntity<Auction>(newAuction, headers); */
+  	 
+  	  try {
+  		  restTemplate.put(BASE_URL + "auctions/" + newAuction.getId(), entity);
+  	  }
+  	  catch (RestClientResponseException e) { 
+  		  System.out.println("Unable to update auction item.");
+  		  System.out.println(e.getRawStatusCode()+ " " + e.getStatusText()  );
+  	  }
+  	  catch (ResourceAccessException e) {
+  		  System.out.println("Unable to update auction item.");
+  		  System.out.println(e.getMessage());
+  	  }
+  	  
+  	  return newAuction;
     }
 
     public void delete(int id) {
-        // place code here
-    }
+  	  try {
+		  restTemplate.delete(BASE_URL + "/" + id);
+		  
+	  }
+	  catch (RestClientResponseException e) { 
+		  System.out.println("Unable to delete auction item.");
+		  System.out.println(e.getRawStatusCode() + " " + e.getStatusText());
+	  }
+	  catch (ResourceAccessException e) {
+		  System.out.println("Unable to delete auction item.");
+		  System.out.println(e.getMessage());
+	  }
+  }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
         HttpHeaders headers = new HttpHeaders();
