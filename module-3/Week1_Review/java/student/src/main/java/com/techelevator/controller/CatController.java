@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+@RestController
+@RequestMapping("/api/cards")
 
 public class CatController {
-
+	
     private CatCardDAO catCardDao;
     private CatFactService catFactService;
     private CatPicService catPicService;
@@ -24,5 +26,33 @@ public class CatController {
         this.catPicService = catPicService;
     }
 
+    @RequestMapping(path = "/random", method = RequestMethod.GET)
+    public CatCard getRandomCatCard() {
+    	CatCard newCard = new CatCard();
+    	String catFact = catFactService.getFact().getText();
+    	newCard.setCatFact(catFact);
+    	String imgUrl = catPicService.getPic().getFile();
+    	newCard.setImgUrl(imgUrl);
+    	return newCard;
+    	
+    }
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "", method = RequestMethod.POST)
+    public void saveNewCard(@Valid @RequestBody CatCard card) {
+    	catCardDao.save(card);
+    }
+    
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT) 
+    public void updateCard(@Valid @RequestBody CatCard card, @PathVariable long id) {
+    	catCardDao.update(id, card);
+    }
+    
+    @RequestMapping (path = "", method = RequestMethod.GET)
+    public List<CatCard> getAllCards() {
+    	return catCardDao.list();
+    }
+    
+ 
 
 }
