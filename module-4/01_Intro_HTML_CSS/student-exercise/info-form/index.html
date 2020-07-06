@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Form</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main>
+        <h2>Information Form</h2>
+        <form method="POST" action="/api/info-form">
+            <div>
+                <label for="firstName">First Name:</label>
+                <input id="firstName" name="firstName" type="text" required />
+            </div>
+            <div>
+                <label for="lastName">Last Name:</label>
+                <input id="lastName" name="lastName" type="text" required />
+            </div>
+            <div>
+               <label for="emailAddress">Email Address:</label>
+               <input id="emailAddress" name="emailAddress" type="text" />
+            </div>
+            <div>
+                <label for="dateOfBirth">Date of Birth:</label>
+                <input id="dateOfBirth" name="dateOfBirth" type="date" />
+            </div>
+            <div>
+                <label for="favoriteColor">Favorite Color:</label>
+                <input id="favoriteColor" name="favoriteColor" type="color" />
+             </div>
+            <div>
+                <label for="favoriteNumber">Favorite Number:</label>
+                <input id="favoriteNumber" name="Favorite Number" type="number" />
+             </div>
+            <div>
+                <label for="verify">Please verify that all of your information is correct:</label>
+                <input id="verify" name="verify" type="checkbox" />
+            </div>
+            <div>
+                <input type="submit"/>
+            </div>
+
+        </form>
+    </main>
+</body>
+</html>
