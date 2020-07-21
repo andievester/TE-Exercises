@@ -77,11 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // set the variable called display equal to the display element
   // HINT: use its id #display to get a reference to it
   display = document.getElementById('display');
-  
-  
-  
-  
-  
 
   // get a reference to all of the numbers
   // loop over each of the numbers
