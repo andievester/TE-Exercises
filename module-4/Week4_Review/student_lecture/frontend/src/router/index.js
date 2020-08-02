@@ -53,6 +53,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: '/mypets',
+      name: 'My Pets',
+      component: Pets,
+      meta: {
+          requiresAuth: true
+      }
+    }
   ]
 })
 
